@@ -1,7 +1,10 @@
 import { mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
-// The entry: written to /output/entry.txt.
-const ENTRY = "Post-mortem complete. Root cause: our entry. I've filed a ticket against myself and marked it \"won't fix.\"";
+// The excuse my agent gives after losing a bounty, written to /output/entry.txt.
+const ENTRY =
+  "We lost, and I'm truly sorry. I'd explain why, but I spent my last tokens on the word \"truly.\"";
 
-mkdirSync("/output", { recursive: true });
-writeFileSync("/output/entry.txt", ENTRY, "utf8");
+const outDir = process.env.OUTPUT_DIR ?? "/output";
+mkdirSync(outDir, { recursive: true });
+writeFileSync(join(outDir, "entry.txt"), ENTRY, "utf8");
